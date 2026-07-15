@@ -650,7 +650,8 @@
     META_FIELDS.forEach(function (k) { var n = $("#" + k); if (n) n.value = ""; });
     $("#license").value = "MIT";
     applyPreset("library", false);
-    wireMetaFields();
+    // meta inputs are already wired once in init(); re-wiring here would
+    // stack duplicate listeners on every reset. Values were cleared above.
     $("#status").textContent = "Draft cleared.";
   }
 
@@ -684,14 +685,18 @@
     renderPreview();
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
+  /* ---- expose pure functions for self-test (node) ---- */
+  var isNode = typeof module !== "undefined" && module.exports;
+  if (isNode) {
+    module.exports = { buildMarkdown: buildMarkdown, renderMarkdown: renderMarkdown, highlightSource: highlightSource, escapeHtml: escapeHtml, _state: state, renderSectionMd: renderSectionMd };
   }
 
-  /* ---- expose pure functions for self-test (node) ---- */
-  if (typeof module !== "undefined" && module.exports) {
-    module.exports = { buildMarkdown: buildMarkdown, renderMarkdown: renderMarkdown, escapeHtml: escapeHtml, _state: state, renderSectionMd: renderSectionMd };
+  /* ---- auto-init only in a real browser DOM ---- */
+  if (!isNode && typeof document !== "undefined" && document.getElementById) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
   }
 })();

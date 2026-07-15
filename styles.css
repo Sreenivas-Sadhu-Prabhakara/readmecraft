@@ -91,6 +91,11 @@ em { font-style: normal; color: var(--ink); }
   z-index: 50; transition: top 0.18s var(--ease); text-decoration: none;
 }
 .skip-link:focus { top: 12px; }
+@media (prefers-color-scheme: dark) {
+  /* --oxblood is a light terracotta in dark mode; keep the skip-link
+     legible by darkening its text (matches the button treatment). */
+  .skip-link { color: #2A0F0B; }
+}
 
 /* shared focus ring */
 a:focus-visible,
