@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --paper:   #F4EEE2;
+    --paper2:  #FBF7EE;
+    --ink:     #201B15;
+    --ink-soft:#5C5347;
+    --rule:    #D8CEBC;
+    --rule2:   #C4B8A2;
+    --oxblood: #8A2A2A;
+    --code-bg: #EFE7D7;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background:
+      radial-gradient(1100px 620px at 88% -8%, rgba(138,42,42,0.08), transparent 62%),
+      linear-gradient(180deg, var(--paper2) 0%, var(--paper) 100%);
+    font-family: var(--sans);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* top press-rule: oxblood + rule, the heading motif */
+  .toprule { position: absolute; top: 0; left: 0; right: 0; height: 10px;
+    background: linear-gradient(90deg, var(--oxblood) 0 32%, var(--rule2) 32% 100%); }
+
+  .frame { position: absolute; inset: 0; padding: 78px 88px;
+    display: flex; flex-direction: column; justify-content: space-between; }
+
+  .brand { display: flex; align-items: center; gap: 24px; }
+  .mark { width: 84px; height: 84px; display: block;
+    filter: drop-shadow(0 14px 30px rgba(58,42,20,0.28)); }
+  .wordmark { font-size: 62px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; color: var(--ink); }
+  .wordmark .hash { font-family: var(--mono); color: var(--oxblood); font-weight: 700; }
+
+  .headline { max-width: 940px; }
+  .headline h1 { font-size: 62px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; color: var(--ink); }
+  .headline h1 .accent { color: var(--oxblood); }
+  .headline p { margin-top: 26px; font-size: 30px; font-weight: 500; letter-spacing: -0.01em;
+    color: var(--ink-soft); line-height: 1.34; max-width: 30ch; }
+
+  /* faux README card echoing the product */
+  .snip { position: absolute; right: 74px; bottom: 150px;
+    width: 360px; background: var(--paper2);
+    border: 1px solid var(--rule2); border-radius: 14px;
+    padding: 18px 20px; box-shadow: 0 26px 60px -30px rgba(58,42,20,0.5);
+    font-family: var(--mono); font-size: 17px; line-height: 1.7; color: var(--ink-soft); }
+  .snip .h { color: var(--oxblood); font-weight: 700; }
+  .snip .b { color: var(--ink); }
+  .snip .code { background: var(--code-bg); border-radius: 4px; padding: 0 5px; color: var(--ink); }
+
+  .chips { display: flex; align-items: center; gap: 13px; }
+  .chip { display: inline-flex; align-items: center; gap: 11px;
+    padding: 12px 20px; border: 1px solid var(--rule2); border-radius: 999px;
+    background: var(--paper2); font-size: 23px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink-soft); }
+  .chip .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--oxblood); }
+</style>
+</head>
+<body>
+  <div class="toprule"></div>
+
+  <div class="snip">
+    <div class="h"># acme-parser</div>
+    <div class="b">&gt; A fast, dep-free parser.</div>
+    <div class="h">## Installation</div>
+    <div><span class="code">npm i acme-parser</span></div>
+    <div class="h">## License</div>
+    <div class="b">MIT</div>
+  </div>
+
+  <div class="frame">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#FBF7EE"/>
+        <rect x="6" y="8" width="20" height="2.8" rx="1.4" fill="#8A2A2A"/>
+        <g fill="none" stroke="#201B15" stroke-width="2.6" stroke-linecap="round">
+          <path d="M12 15h8"/><path d="M11.5 20h9"/>
+          <path d="M13 15l-1.4 9"/><path d="M19 15l-1.4 9"/>
+        </g>
+      </svg>
+      <span class="wordmark">readmecraft</span>
+    </div>
+
+    <div class="headline">
+      <h1>Interview yourself into a<br><span class="accent">great README.</span></h1>
+      <p>Plain answers in. Clean, idiomatic Markdown out.</p>
+    </div>
+
+    <div class="chips">
+      <span class="chip"><span class="dot"></span>live preview</span>
+      <span class="chip"><span class="dot"></span>copy or download</span>
+      <span class="chip"><span class="dot"></span>offline</span>
+    </div>
+  </div>
+</body>
+</html>
